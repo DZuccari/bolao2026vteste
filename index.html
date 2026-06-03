@@ -6,7 +6,7 @@
 <title>⚽ Bolão Copa 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Bricolage+Grotesque:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800&family=Bebas+Neue&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
 <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -15,90 +15,58 @@
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
 <style>
 :root{
-  --grass-900:#052e16;
-  --grass-800:#064e3b;
-  --grass-700:#047857;
+  --grass-700:#166534;
   --grass-600:#16a34a;
   --grass-100:#dcfce7;
-  --lime-400:#a3e635;
-  --gold-500:#f59e0b;
-  --gold-100:#fef3c7;
-  --ink-950:#07130f;
+  --gold-500:#ca8a04;
   --ink-900:#111827;
-  --ink-500:#64748b;
-  --paper:#fbfff8;
+  --ink-500:#6b7280;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 body{
   background:
-    radial-gradient(900px 420px at 14% -8%, rgba(163,230,53,.36) 0%, rgba(163,230,53,0) 62%),
-    radial-gradient(820px 520px at 110% 0%, rgba(245,158,11,.28) 0%, rgba(245,158,11,0) 56%),
-    linear-gradient(145deg,#f7fee7 0%,#eefdf4 38%,#eef2ff 100%);
-  font-family:"Bricolage Grotesque",system-ui,-apple-system,sans-serif;
+    radial-gradient(1100px 500px at -10% -10%, #ecfdf5 0%, rgba(236,253,245,0) 60%),
+    radial-gradient(900px 460px at 110% -15%, #fef9c3 0%, rgba(254,249,195,0) 62%),
+    linear-gradient(180deg,#f8fafc 0%,#f1f5f9 100%);
+  font-family:"DM Sans",system-ui,-apple-system,sans-serif;
   color:var(--ink-900);
-  min-height:100vh;
-  overflow-x:hidden;
-}
-body:before{
-  content:"";
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  background:
-    linear-gradient(90deg,rgba(5,46,22,.045) 1px,transparent 1px),
-    linear-gradient(0deg,rgba(5,46,22,.035) 1px,transparent 1px),
-    radial-gradient(circle at 50% 0%,rgba(255,255,255,.9),transparent 48%);
-  background-size:72px 72px,72px 72px,100% 100%;
-  mask-image:linear-gradient(180deg,rgba(0,0,0,.9),rgba(0,0,0,.25) 70%,transparent);
-  z-index:-1;
 }
 input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none;}
 input[type=number]{-moz-appearance:textfield;}
 ::-webkit-scrollbar{width:6px;}
 ::-webkit-scrollbar-track{background:transparent;}
-::-webkit-scrollbar-thumb{background:#9ca3af;border-radius:999px;}
+::-webkit-scrollbar-thumb{background:#d1d5db;border-radius:999px;}
 .inp:focus{border-color:var(--grass-600)!important;box-shadow:0 0 0 3px rgba(22,163,74,.12);outline:none;}
 .score-inp:focus{border-color:var(--grass-600)!important;box-shadow:0 0 0 3px rgba(22,163,74,.14);outline:none;}
 .btn-acc{transition:transform .12s ease,box-shadow .2s ease,filter .2s ease;}
-.btn-acc:hover{filter:brightness(1.02);box-shadow:0 12px 26px rgba(22,163,74,.25);}
+.btn-acc:hover{filter:brightness(.98);box-shadow:0 6px 16px rgba(22,163,74,.22);}
 .btn-acc:active{transform:translateY(1px);}
 .pill{transition:all .18s;cursor:pointer;}
 summary{list-style:none;}
 summary::-webkit-details-marker{display:none;}
 .match-card{
-  border:1px solid rgba(6,78,59,.1)!important;
+  border:1px solid rgba(17,24,39,.08)!important;
   animation:cardIn .32s ease both;
 }
-.match-card:hover{transform:translateY(-2px);box-shadow:0 18px 38px rgba(5,46,22,.14)!important;}
+.match-card:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(17,24,39,.12)!important;}
 select{cursor:pointer;}
-.stadium-card{position:relative;overflow:hidden;}
-.stadium-card:before{
-  content:"";
-  position:absolute;
-  inset:-1px;
-  background:
-    radial-gradient(circle at 85% 8%,rgba(255,255,255,.18),transparent 24%),
-    repeating-linear-gradient(105deg,rgba(255,255,255,.065) 0 12px,transparent 12px 24px);
-  pointer-events:none;
-}
-.shine-card{position:relative;overflow:hidden;}
-.shine-card:after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(110deg,transparent 0 42%,rgba(255,255,255,.34) 48%,transparent 55%);
-  transform:translateX(-120%);
-  transition:transform .75s ease;
-  pointer-events:none;
-}
-.shine-card:hover:after{transform:translateX(120%);}
+.login-grid{grid-template-columns:minmax(0,1.05fr) minmax(320px,.95fr);}
+.login-hero{min-height:480px;}
+.login-score-grid,.info-grid{grid-template-columns:repeat(3,1fr);}
+.join-grid{grid-template-columns:minmax(0,.9fr) minmax(300px,1fr);}
 @keyframes cardIn{
   from{opacity:0;transform:translateY(8px);}
   to{opacity:1;transform:translateY(0);}
 }
+@media (max-width:820px){
+  .login-grid,.join-grid{grid-template-columns:1fr!important;}
+  .login-hero{min-height:auto!important;}
+}
+@media (max-width:620px){
+  .login-score-grid,.info-grid{grid-template-columns:1fr!important;}
+}
 @media (max-width:480px){
   .match-card{animation:none;}
-  body:before{background-size:46px 46px,46px 46px,100% 100%;}
 }
 </style>
 </head>
@@ -124,14 +92,14 @@ const ref = path => db.ref('bolao2026/' + path);
 
 // ── Palette (60-30-10) ────────────────────────────────────────────────────────
 const T = {
-  bg:'rgba(255,255,255,.58)', card:'rgba(255,255,255,.88)', accent:'#047857', accentLt:'#dcfce7', accentMd:'#86efac',
-  txt1:'#07130f', txt2:'#475569', txt3:'#94A3B8',
-  border:'rgba(6,78,59,.12)', borderMd:'rgba(6,78,59,.2)',
+  bg:'#F3F4F6', card:'#FFFFFF', accent:'#16a34a', accentLt:'#dcfce7', accentMd:'#86efac',
+  txt1:'#111827', txt2:'#6B7280', txt3:'#9CA3AF',
+  border:'#E5E7EB', borderMd:'#D1D5DB',
   ok:'#16a34a', okBg:'#dcfce7', half:'#D97706', halfBg:'#fef3c7',
   err:'#DC2626', errBg:'#fee2e2', gold:'#B45309', goldBg:'#fef3c7',
 };
-const shadow = '0 14px 34px rgba(5,46,22,.08),0 1px 0 rgba(255,255,255,.75) inset';
-const shadowMd = '0 22px 60px rgba(5,46,22,.18),0 1px 0 rgba(255,255,255,.72) inset';
+const shadow = '0 1px 3px rgba(0,0,0,.06),0 1px 8px rgba(0,0,0,.04)';
+const shadowMd = '0 2px 12px rgba(0,0,0,.08),0 1px 3px rgba(0,0,0,.05)';
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 const NAME_STORAGE_KEY = 'bolao2026_me';
@@ -311,10 +279,10 @@ const parseCsvLine=(line,delimiter=',')=>{
 };
 
 // ── Shared styles ─────────────────────────────────────────────────────────────
-const sec={fontSize:12,fontWeight:900,color:T.txt3,marginBottom:10,marginTop:18,letterSpacing:1.3,textTransform:'uppercase'};
-const inpSt={background:'rgba(255,255,255,.76)',border:`1.5px solid ${T.border}`,borderRadius:14,color:T.txt1,fontSize:13,outline:'none',padding:'11px 13px',width:'100%',boxSizing:'border-box'};
-const btnAcc={background:'linear-gradient(135deg,#047857,#16a34a)',color:'#fff',border:'none',borderRadius:14,fontSize:13,fontWeight:900,cursor:'pointer',padding:'11px 18px'};
-const scoreInpSt={width:46,height:46,textAlign:'center',borderRadius:14,border:`1.5px solid ${T.border}`,background:'rgba(255,255,255,.86)',color:T.txt1,fontSize:20,fontWeight:900,outline:'none',boxShadow:'0 8px 18px rgba(5,46,22,.06)'};
+const sec={fontSize:12,fontWeight:700,color:T.txt3,marginBottom:10,marginTop:16,letterSpacing:.8,textTransform:'uppercase'};
+const inpSt={background:T.bg,border:`1.5px solid ${T.border}`,borderRadius:10,color:T.txt1,fontSize:13,outline:'none',padding:'10px 12px',width:'100%',boxSizing:'border-box'};
+const btnAcc={background:T.accent,color:'#fff',border:'none',borderRadius:10,fontSize:13,fontWeight:700,cursor:'pointer',padding:'10px 18px'};
+const scoreInpSt={width:44,height:44,textAlign:'center',borderRadius:10,border:`1.5px solid ${T.border}`,background:T.bg,color:T.txt1,fontSize:20,fontWeight:800,outline:'none'};
 
 // ── Main App ──────────────────────────────────────────────────────────────────
 function Bolao(){
@@ -431,14 +399,17 @@ function Bolao(){
     const partsUnsub = partsRef.on('value', snap=>{
       if(!live) return;
       const val=snap.val()||{};
-      const ids=[];
+      const ids=Object.keys(val);
       const meta={};
-      Object.entries(val).forEach(([uid,item])=>{
-        if(!item||typeof item!=='object') return;
-        const parsedName=normalizeName((item.name||'').toString()).slice(0,24);
-        if(!isValidName(parsedName)) return;
-        ids.push(uid);
-        meta[uid]={name:parsedName,email:item.email||''};
+      ids.forEach(uid=>{
+        const item=val[uid];
+        if(item&&typeof item==='object'){
+          const parsedName=normalizeName((item.name||'').toString()).slice(0,24);
+          meta[uid]={name:parsedName||'Sem nome',email:item.email||''};
+        }else{
+          const legacyName=normalizeName(uid);
+          meta[uid]={name:legacyName||'Sem nome',email:''};
+        }
       });
       setParts(ids);
       setPartMeta(meta);
@@ -763,6 +734,8 @@ function Bolao(){
   const board=scoreBoardForMatches(matches,{includeChampion:true});
   const myPredMap=preds[me]||{};
   const savedPredCount=matches.filter(m=>myPredMap[m.id]&&myPredMap[m.id].home!=='').length;
+  const lockedMatchCount=matches.filter(m=>started(m.dt)).length;
+  const resultMatchCount=scoredMatches.length;
   const progressPct=matches.length?Math.round(savedPredCount/matches.length*100):0;
   const pendingMatches=matches
     .filter(m=>!started(m.dt)&&(!myPredMap[m.id]||myPredMap[m.id].home===''))
@@ -930,20 +903,75 @@ function Bolao(){
   );
 
   if(!me) return (
-    <div style={{minHeight:'100vh',background:T.bg,display:'flex',alignItems:'center',justifyContent:'center',padding:24}}>
-      <div style={{width:'100%',maxWidth:400}}>
-        <div style={{background:'linear-gradient(135deg,#15803d 0%,#22c55e 55%,#84cc16 100%)',borderRadius:'20px 20px 0 0',padding:'32px 28px 24px',textAlign:'center',position:'relative',overflow:'hidden'}}>
-          <div style={{position:'absolute',top:-40,right:-40,width:150,height:150,borderRadius:'50%',background:'rgba(255,255,255,.07)'}}/>
-          <div style={{fontSize:52,marginBottom:8,filter:'drop-shadow(0 4px 8px rgba(0,0,0,.2))'}}>⚽</div>
-          <div style={{fontFamily:'\"Bebas Neue\", sans-serif',fontSize:44,fontWeight:400,color:'#fff',letterSpacing:3,lineHeight:1}}>BOLÃO</div>
-          <div style={{fontSize:12,color:'rgba(255,255,255,.7)',letterSpacing:4,marginTop:6,textTransform:'uppercase'}}>Copa do Mundo 2026</div>
+    <div style={{minHeight:'100vh',background:'transparent',display:'flex',alignItems:'center',justifyContent:'center',padding:24}}>
+      <div className="login-grid" style={{width:'100%',maxWidth:980,display:'grid',gridTemplateColumns:'minmax(0,1.05fr) minmax(320px,.95fr)',gap:18}}>
+        <div className="login-hero" style={{background:'linear-gradient(135deg,#166534 0%,#16a34a 55%,#65a30d 100%)',borderRadius:24,padding:'34px 30px',position:'relative',overflow:'hidden',boxShadow:shadowMd,minHeight:480,display:'flex',flexDirection:'column',justifyContent:'space-between'}}>
+          <div style={{position:'absolute',top:-70,right:-60,width:230,height:230,borderRadius:'50%',background:'rgba(255,255,255,.08)'}}/>
+          <div style={{position:'absolute',bottom:-90,left:-60,width:240,height:240,borderRadius:'50%',background:'rgba(255,255,255,.06)'}}/>
+          <div style={{position:'relative'}}>
+            <div style={{display:'inline-flex',alignItems:'center',gap:8,background:'rgba(255,255,255,.14)',border:'1px solid rgba(255,255,255,.18)',borderRadius:999,padding:'7px 12px',fontSize:11,color:'rgba(255,255,255,.82)',fontWeight:800,letterSpacing:1,textTransform:'uppercase',marginBottom:18}}>
+              ⚽ Copa do Mundo 2026
+            </div>
+            <div style={{fontFamily:'\"Bebas Neue\", sans-serif',fontSize:72,fontWeight:400,color:'#fff',letterSpacing:3,lineHeight:.9}}>BOLÃO<br/>ENTRE AMIGOS</div>
+            <p style={{maxWidth:430,fontSize:15,color:'rgba(255,255,255,.78)',lineHeight:1.65,marginTop:18}}>
+              Faça seus placares, escolha o campeão, acompanhe quem já palpitou e dispute o ranking sem planilha, sem confusão e sem revelar palpite antes da hora.
+            </p>
+          </div>
+          <div className="login-score-grid" style={{position:'relative',display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:10,marginTop:24}}>
+            {[
+              {n:'3',l:'placar exato'},
+              {n:'1',l:'vencedor/empate'},
+              {n:`+${CHAMP_PTS}`,l:'campeão'},
+            ].map(x=>(
+              <div key={x.l} style={{background:'rgba(255,255,255,.13)',border:'1px solid rgba(255,255,255,.16)',borderRadius:16,padding:'14px 10px',textAlign:'center'}}>
+                <div style={{fontSize:28,fontWeight:900,color:'#fff',lineHeight:1}}>{x.n}</div>
+                <div style={{fontSize:10,color:'rgba(255,255,255,.7)',fontWeight:800,textTransform:'uppercase',letterSpacing:.7,marginTop:5}}>{x.l}</div>
+              </div>
+            ))}
+          </div>
         </div>
-        <div style={{background:T.card,borderRadius:'0 0 20px 20px',padding:'28px',boxShadow:shadowMd}}>
-          <p style={{fontSize:14,color:T.txt2,marginBottom:20,textAlign:'center',lineHeight:1.6}}>
-            Faça login com Google para entrar no bolão.
-          </p>
-          <button className="btn-acc" style={{...btnAcc,width:'100%',padding:14,fontSize:15}} onClick={signInGoogle}>Entrar com Google</button>
-          <p style={{color:T.txt3,fontSize:12,textAlign:'center',marginTop:16}}>{parts.length} participante{parts.length>1?'s':''} no bolão</p>
+        <div style={{display:'flex',flexDirection:'column',gap:12}}>
+          <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:22,padding:'22px',boxShadow:shadowMd}}>
+            <div style={{fontSize:18,fontWeight:900,color:T.txt1,marginBottom:6}}>Entre no bolão</div>
+            <p style={{fontSize:13,color:T.txt2,lineHeight:1.6,marginBottom:16}}>Use sua conta Google para registrar seu nome e salvar seus palpites com segurança.</p>
+            <button className="btn-acc" style={{...btnAcc,width:'100%',padding:14,fontSize:15}} onClick={signInGoogle}>Entrar com Google</button>
+            <div style={{fontSize:11,color:T.txt3,textAlign:'center',marginTop:12}}>Seu palpite de campeão trava no início do primeiro jogo.</div>
+          </div>
+          <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:22,padding:'18px',boxShadow:shadow}}>
+            <div style={{fontSize:13,fontWeight:900,color:T.txt1,marginBottom:12}}>Como funciona</div>
+            {[
+              ['1','Entre e defina seu nome','Esse é o nome que aparece para seus amigos.'],
+              ['2','Preencha seus placares','Cada jogo fecha automaticamente no horário de início.'],
+              ['3','Acompanhe o ranking','Veja pontos, exatos, vencedores e comparativos por jogo.'],
+            ].map(step=>(
+              <div key={step[0]} style={{display:'flex',gap:10,padding:'10px 0',borderTop:step[0]==='1'?'none':`1px solid ${T.border}`}}>
+                <div style={{width:26,height:26,borderRadius:9,background:T.accentLt,color:T.accent,display:'flex',alignItems:'center',justifyContent:'center',fontSize:12,fontWeight:900,flexShrink:0}}>{step[0]}</div>
+                <div>
+                  <div style={{fontSize:12,fontWeight:800,color:T.txt1}}>{step[1]}</div>
+                  <div style={{fontSize:11,color:T.txt3,marginTop:2,lineHeight:1.45}}>{step[2]}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:22,padding:'18px',boxShadow:shadow}}>
+            <div style={{fontSize:13,fontWeight:900,color:T.txt1,marginBottom:12}}>O que você acompanha</div>
+            <div className="info-grid" style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:8}}>
+              {[
+                ['📌','Pendências','o que falta preencher'],
+                ['👀','Sem spoiler','placares ocultos antes do jogo'],
+                ['📊','Ranking','geral, diário e por jogo'],
+              ].map(item=>(
+                <div key={item[1]} style={{background:T.bg,border:`1px solid ${T.border}`,borderRadius:14,padding:'10px 8px',textAlign:'center'}}>
+                  <div style={{fontSize:18,marginBottom:4}}>{item[0]}</div>
+                  <div style={{fontSize:11,fontWeight:900,color:T.txt1}}>{item[1]}</div>
+                  <div style={{fontSize:9,color:T.txt3,lineHeight:1.35,marginTop:2}}>{item[2]}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div style={{background:T.goldBg,border:'1px solid #FCD34D',borderRadius:18,padding:'14px 16px',fontSize:12,color:'#92400E',lineHeight:1.55}}>
+            <strong>Jogo limpo:</strong> palpites dos outros ficam ocultos até o jogo começar. O campeão também fica oculto até o início da Copa.
+          </div>
         </div>
       </div>
     </div>
@@ -951,12 +979,33 @@ function Bolao(){
 
   if(!meReady) return (
     <div style={{minHeight:'100vh',background:T.bg,display:'flex',alignItems:'center',justifyContent:'center',padding:24}}>
-      <div style={{width:'100%',maxWidth:420,background:T.card,border:`1px solid ${T.border}`,borderRadius:16,padding:24,boxShadow:shadowMd}}>
-        <h2 style={{fontSize:18,color:T.txt1,marginBottom:8}}>Defina seu nome no bolão</h2>
-        <p style={{fontSize:13,color:T.txt2,marginBottom:12}}>Este nome aparecerá para seus amigos no ranking e palpites.</p>
-        <input className="inp" style={{...inpSt,marginBottom:12,fontSize:15}} placeholder="Seu nome no bolão" value={nameInput} maxLength="24" onChange={e=>setNameInput(e.target.value)} onKeyDown={e=>e.key==='Enter'&&join()}/>
-        <button className="btn-acc" style={{...btnAcc,width:'100%',padding:12,fontSize:14}} onClick={join}>Salvar e entrar</button>
-        <button style={{marginTop:10,width:'100%',padding:'10px 12px',borderRadius:10,border:`1px solid ${T.border}`,background:T.card,color:T.txt2,fontSize:12,cursor:'pointer'}} onClick={logout}>Sair</button>
+      <div className="join-grid" style={{width:'100%',maxWidth:760,display:'grid',gridTemplateColumns:'minmax(0,.9fr) minmax(300px,1fr)',gap:14}}>
+        <div style={{background:'linear-gradient(135deg,#166534,#16a34a)',borderRadius:22,padding:24,color:'#fff',boxShadow:shadowMd,position:'relative',overflow:'hidden'}}>
+          <div style={{position:'absolute',right:-40,top:-50,width:150,height:150,borderRadius:'50%',background:'rgba(255,255,255,.09)'}}/>
+          <div style={{fontSize:12,fontWeight:900,letterSpacing:1,textTransform:'uppercase',color:'rgba(255,255,255,.72)',marginBottom:10}}>Quase lá</div>
+          <div style={{fontFamily:'\"Bebas Neue\", sans-serif',fontSize:44,letterSpacing:1.5,lineHeight:1}}>Crie sua identidade no bolão</div>
+          <p style={{fontSize:13,lineHeight:1.65,color:'rgba(255,255,255,.78)',marginTop:12}}>
+            Esse nome aparece no ranking, nos palpites gerais e no comparativo por jogo. Dá para ser simples: nome, apelido ou nome de guerra.
+          </p>
+          <div style={{display:'flex',flexDirection:'column',gap:8,marginTop:18}}>
+            {['Palpites ficam salvos na sua conta Google.','Cada jogo trava no horário de início.','Campeão trava quando a Copa começar.'].map(txt=>(
+              <div key={txt} style={{display:'flex',gap:8,alignItems:'center',fontSize:12,color:'rgba(255,255,255,.82)'}}>
+                <span style={{width:20,height:20,borderRadius:8,background:'rgba(255,255,255,.16)',display:'flex',alignItems:'center',justifyContent:'center',fontSize:11}}>✓</span>
+                <span>{txt}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:22,padding:24,boxShadow:shadowMd}}>
+          <h2 style={{fontSize:18,color:T.txt1,marginBottom:8}}>Defina seu nome no bolão</h2>
+          <p style={{fontSize:13,color:T.txt2,lineHeight:1.6,marginBottom:14}}>Use um nome que seus amigos reconheçam. Ele será exibido só para quem entrou no bolão.</p>
+          <input className="inp" style={{...inpSt,marginBottom:12,fontSize:15}} placeholder="Seu nome no bolão" value={nameInput} maxLength="24" onChange={e=>setNameInput(e.target.value)} onKeyDown={e=>e.key==='Enter'&&join()}/>
+          <button className="btn-acc" style={{...btnAcc,width:'100%',padding:12,fontSize:14}} onClick={join}>Salvar e entrar</button>
+          <button style={{marginTop:10,width:'100%',padding:'10px 12px',borderRadius:10,border:`1px solid ${T.border}`,background:T.card,color:T.txt2,fontSize:12,cursor:'pointer'}} onClick={logout}>Sair</button>
+          <div style={{marginTop:14,padding:'12px',borderRadius:14,background:T.accentLt,border:`1px solid ${T.accentMd}`,fontSize:11,color:T.accent,lineHeight:1.5}}>
+            Dica: depois de entrar, a aba Início mostra pendências, próximos jogos e atalhos para preencher o que faltar.
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -965,66 +1014,62 @@ function Bolao(){
   const TabHome=(
     <div style={{padding:'16px 14px 0'}}>
       {/* Hero */}
-      <div className="stadium-card shine-card" style={{background:'linear-gradient(135deg,#052e16 0%,#047857 48%,#84cc16 120%)',borderRadius:28,padding:'24px 22px 18px',marginBottom:14,position:'relative',overflow:'hidden',boxShadow:'0 28px 70px rgba(5,46,22,.28)',border:'1px solid rgba(255,255,255,.18)'}}>
-        <div style={{position:'absolute',right:-38,top:-42,width:190,height:190,borderRadius:'50%',background:'radial-gradient(circle,rgba(236,253,245,.24),rgba(236,253,245,0) 68%)',pointerEvents:'none'}}/>
-        <div style={{position:'absolute',right:18,bottom:-34,fontFamily:'\"Bebas Neue\", sans-serif',fontSize:150,lineHeight:.8,color:'rgba(255,255,255,.06)',letterSpacing:4,pointerEvents:'none'}}>2026</div>
-        <div style={{position:'relative',display:'flex',justifyContent:'space-between',alignItems:'flex-start',gap:16,marginBottom:20}}>
-          <div style={{minWidth:0}}>
-            <div style={{display:'inline-flex',alignItems:'center',gap:7,fontSize:10,color:'#d9f99d',letterSpacing:1.5,textTransform:'uppercase',fontWeight:900,background:'rgba(255,255,255,.1)',border:'1px solid rgba(255,255,255,.16)',borderRadius:999,padding:'5px 9px',marginBottom:10}}>
-              <span>⚡</span><span>Seu bolão está vivo</span>
-            </div>
-            <div style={{fontSize:12,color:'rgba(255,255,255,.68)',fontWeight:700,marginBottom:2}}>Bem-vindo de volta</div>
-            <div style={{fontFamily:'\"Bebas Neue\", sans-serif',fontSize:44,fontWeight:400,color:'#fff',letterSpacing:1.2,lineHeight:.95,whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>{meName||'Sem nome'}</div>
+      <div style={{background:'linear-gradient(135deg,#166534 0%,#16a34a 55%,#65a30d 100%)',borderRadius:18,padding:'20px 20px 16px',marginBottom:14,position:'relative',overflow:'hidden'}}>
+        <div style={{position:'absolute',top:-30,right:-30,width:120,height:120,borderRadius:'50%',background:'rgba(255,255,255,.07)',pointerEvents:'none'}}/>
+        <div style={{display:'flex',justifyContent:'space-between',alignItems:'flex-start',marginBottom:16}}>
+          <div>
+            <div style={{fontSize:11,color:'rgba(255,255,255,.65)',letterSpacing:1,textTransform:'uppercase',marginBottom:2}}>Bem-vindo de volta</div>
+            <div style={{fontFamily:'\"Bebas Neue\", sans-serif',fontSize:30,fontWeight:400,color:'#fff',letterSpacing:1}}>{meName||'Sem nome'}</div>
           </div>
           {myStats.rank&&(
-            <div style={{background:'rgba(255,255,255,.14)',border:'1px solid rgba(255,255,255,.2)',borderRadius:18,padding:'12px 14px',textAlign:'center',backdropFilter:'blur(8px)',minWidth:74}}>
-              <div style={{fontSize:28,fontWeight:900,color:'#fff',lineHeight:1}}>{myStats.rank===1?'🥇':myStats.rank===2?'🥈':myStats.rank===3?'🥉':`${myStats.rank}º`}</div>
-              <div style={{fontSize:9,color:'rgba(255,255,255,.72)',marginTop:3,fontWeight:800,textTransform:'uppercase',letterSpacing:.8}}>lugar</div>
+            <div style={{background:'rgba(255,255,255,.15)',borderRadius:12,padding:'8px 14px',textAlign:'center'}}>
+              <div style={{fontSize:22,fontWeight:900,color:'#fff',lineHeight:1}}>{myStats.rank===1?'🥇':myStats.rank===2?'🥈':myStats.rank===3?'🥉':`${myStats.rank}º`}</div>
+              <div style={{fontSize:9,color:'rgba(255,255,255,.7)',marginTop:2}}>lugar</div>
             </div>
           )}
         </div>
-        <div style={{position:'relative',display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:10}}>
-          {[{v:myStats.pts,l:'pontos',c:'#fff'},{v:myStats.exact,l:'exatos',c:'#bbf7d0'},{v:myStats.win,l:'vencedor',c:'#fde68a'},{v:myStats.miss,l:'erros',c:'#fecaca'}].map(s=>(
-            <div key={s.l} style={{background:'rgba(255,255,255,.13)',border:'1px solid rgba(255,255,255,.14)',borderRadius:18,padding:'12px 8px',textAlign:'center',backdropFilter:'blur(8px)'}}>
-              <div style={{fontSize:26,fontWeight:900,color:s.c,lineHeight:1}}>{s.v}</div>
-              <div style={{fontSize:9,color:'rgba(255,255,255,.68)',marginTop:5,fontWeight:800,textTransform:'uppercase',letterSpacing:.7}}>{s.l}</div>
+        <div style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:8}}>
+          {[{v:myStats.pts,l:'pts',c:'#fff'},{v:myStats.exact,l:'exatos',c:'#bbf7d0'},{v:myStats.win,l:'vencedor',c:'#fde68a'},{v:myStats.miss,l:'erros',c:'#fecaca'}].map(s=>(
+            <div key={s.l} style={{background:'rgba(255,255,255,.12)',borderRadius:12,padding:'10px 6px',textAlign:'center'}}>
+              <div style={{fontSize:22,fontWeight:900,color:s.c,lineHeight:1}}>{s.v}</div>
+              <div style={{fontSize:9,color:'rgba(255,255,255,.65)',marginTop:3}}>{s.l}</div>
             </div>
           ))}
         </div>
         {myStats.total>0&&(
-          <div style={{position:'relative',marginTop:15}}>
-            <div style={{height:6,background:'rgba(255,255,255,.18)',borderRadius:999,overflow:'hidden',display:'flex'}}>
+          <div style={{marginTop:12}}>
+            <div style={{height:4,background:'rgba(255,255,255,.2)',borderRadius:4,overflow:'hidden',display:'flex'}}>
               <div style={{height:'100%',width:`${Math.round(myStats.exact/myStats.total*100)}%`,background:'#fff'}}/>
-              <div style={{height:'100%',width:`${Math.round(myStats.win/myStats.total*100)}%`,background:'rgba(217,249,157,.72)'}}/>
+              <div style={{height:'100%',width:`${Math.round(myStats.win/myStats.total*100)}%`,background:'rgba(255,255,255,.55)'}}/>
             </div>
-            <div style={{display:'flex',justifyContent:'space-between',marginTop:7}}>
-              <span style={{fontSize:10,color:'rgba(255,255,255,.7)',fontWeight:700}}>{myStats.pct}% de acerto</span>
-              <span style={{fontSize:10,color:'rgba(255,255,255,.7)',fontWeight:700}}>{myStats.total} jogos avaliados</span>
+            <div style={{display:'flex',justifyContent:'space-between',marginTop:5}}>
+              <span style={{fontSize:10,color:'rgba(255,255,255,.6)'}}>{myStats.pct}% de acerto</span>
+              <span style={{fontSize:10,color:'rgba(255,255,255,.6)'}}>{myStats.total} jogos avaliados</span>
             </div>
           </div>
         )}
       </div>
 
-      <div style={{display:'flex',gap:10,marginBottom:14}}>
-        <button style={{flex:1,padding:'12px 14px',borderRadius:16,border:`1px solid ${reminderEnabled?T.accentMd:T.border}`,background:reminderEnabled?'linear-gradient(180deg,#dcfce7,#f7fee7)':'rgba(255,255,255,.78)',color:reminderEnabled?T.accent:T.txt2,fontWeight:800,fontSize:12,cursor:'pointer',boxShadow:shadow,backdropFilter:'blur(12px)'}} onClick={()=>reminderEnabled?setReminderEnabled(false):requestReminderPermission()}>
+      <div style={{display:'flex',gap:8,marginBottom:14}}>
+        <button style={{flex:1,padding:'10px 12px',borderRadius:12,border:`1px solid ${reminderEnabled?T.accentMd:T.border}`,background:reminderEnabled?T.accentLt:T.card,color:reminderEnabled?T.accent:T.txt2,fontWeight:600,fontSize:12,cursor:'pointer'}} onClick={()=>reminderEnabled?setReminderEnabled(false):requestReminderPermission()}>
           {reminderEnabled?'🔔 Lembretes ON':'🔔 Ativar lembretes'}
         </button>
-        <button style={{padding:'12px 15px',borderRadius:16,border:`1px solid ${T.border}`,background:'rgba(255,255,255,.78)',color:T.txt2,fontWeight:800,fontSize:12,cursor:'pointer',boxShadow:shadow,backdropFilter:'blur(12px)'}} onClick={()=>setTab('rules')}>
+        <button style={{padding:'10px 12px',borderRadius:12,border:`1px solid ${T.border}`,background:T.card,color:T.txt2,fontWeight:600,fontSize:12,cursor:'pointer'}} onClick={()=>setTab('rules')}>
           📘 Regras
         </button>
       </div>
 
       {/* Progress */}
-      <div className="shine-card" style={{background:'rgba(255,255,255,.82)',border:`1px solid ${T.border}`,borderRadius:24,padding:'18px',marginBottom:14,boxShadow:shadow,backdropFilter:'blur(14px)'}}>
+      <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:16,padding:'16px',marginBottom:14,boxShadow:shadow}}>
         <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',gap:12,marginBottom:12}}>
           <div>
-            <div style={{fontSize:15,fontWeight:900,color:T.txt1}}>Seu progresso</div>
+            <div style={{fontSize:14,fontWeight:800,color:T.txt1}}>Seu progresso</div>
             <div style={{fontSize:11,color:T.txt3,marginTop:2}}>{savedPredCount}/{matches.length} palpites de jogos feitos</div>
           </div>
-          <div style={{fontSize:28,fontWeight:900,color:progressPct===100?T.accent:T.txt1,letterSpacing:-1}}>{progressPct}%</div>
+          <div style={{fontSize:24,fontWeight:900,color:progressPct===100?T.accent:T.txt1}}>{progressPct}%</div>
         </div>
-        <div style={{height:10,background:'rgba(6,78,59,.08)',borderRadius:999,overflow:'hidden',marginBottom:12}}>
-          <div style={{height:'100%',width:`${progressPct}%`,background:'linear-gradient(90deg,#047857,#84cc16,#facc15)',borderRadius:999,boxShadow:'0 0 18px rgba(132,204,22,.5)'}}/>
+        <div style={{height:9,background:T.bg,borderRadius:999,overflow:'hidden',marginBottom:12}}>
+          <div style={{height:'100%',width:`${progressPct}%`,background:'linear-gradient(90deg,#16a34a,#84cc16)',borderRadius:999}}/>
         </div>
         <div style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:8}}>
           {[
@@ -1033,7 +1078,7 @@ function Bolao(){
             {v:champDone?'sim':'não',l:'campeão',c:champDone?T.gold:T.txt3,b:champDone?T.goldBg:T.bg},
             {v:urgentPendingAll.length,l:'48h',c:urgentPendingAll.length?T.err:T.txt3,b:urgentPendingAll.length?T.errBg:T.bg},
           ].map(item=>(
-            <div key={item.l} style={{background:item.b,borderRadius:16,padding:'10px 6px',textAlign:'center',border:`1px solid ${T.border}`}}>
+            <div key={item.l} style={{background:item.b,borderRadius:12,padding:'9px 6px',textAlign:'center',border:`1px solid ${T.border}`}}>
               <div style={{fontSize:16,fontWeight:900,color:item.c,lineHeight:1,textTransform:'uppercase'}}>{item.v}</div>
               <div style={{fontSize:9,color:T.txt3,marginTop:4}}>{item.l}</div>
             </div>
@@ -1042,17 +1087,17 @@ function Bolao(){
       </div>
 
       {/* Action center */}
-      <div style={{background:actionCount?'linear-gradient(135deg,#fffbeb,#ffffff)':'rgba(255,255,255,.82)',border:`1px solid ${actionCount?'#FCD34D':T.border}`,borderRadius:24,padding:'18px',marginBottom:14,boxShadow:shadow,backdropFilter:'blur(14px)'}}>
+      <div style={{background:actionCount?T.halfBg:T.card,border:`1px solid ${actionCount?'#FCD34D':T.border}`,borderRadius:16,padding:'16px',marginBottom:14,boxShadow:shadow}}>
         <div style={{display:'flex',alignItems:'center',gap:10,marginBottom:12}}>
-          <div style={{width:40,height:40,borderRadius:15,background:actionCount?'#FEF3C7':T.accentLt,display:'flex',alignItems:'center',justifyContent:'center',fontSize:19,boxShadow:'0 10px 20px rgba(217,119,6,.12)'}}>
+          <div style={{width:36,height:36,borderRadius:12,background:actionCount?'#FEF3C7':T.accentLt,display:'flex',alignItems:'center',justifyContent:'center',fontSize:18}}>
             {actionCount?'⚠️':'✅'}
           </div>
           <div style={{flex:1}}>
-            <div style={{fontSize:15,fontWeight:900,color:T.txt1}}>Prioridades agora</div>
+            <div style={{fontSize:14,fontWeight:800,color:T.txt1}}>Prioridades agora</div>
             <div style={{fontSize:11,color:T.txt3,marginTop:1}}>{actionCount?`${actionCount} item${actionCount!==1?'s':''} pedindo atenção`:'Tudo certo por enquanto'}</div>
           </div>
           {myStats.missing>0&&(
-            <button style={{padding:'8px 13px',borderRadius:999,border:'none',background:'linear-gradient(135deg,#d97706,#f59e0b)',color:'#fff',fontSize:11,fontWeight:900,cursor:'pointer',boxShadow:'0 10px 22px rgba(217,119,6,.24)'}} onClick={()=>{setTab('matches');setOnlyMissing(true);}}>Ver faltando</button>
+            <button style={{padding:'6px 12px',borderRadius:10,border:'none',background:T.half,color:'#fff',fontSize:11,fontWeight:800,cursor:'pointer'}} onClick={()=>{setTab('matches');setOnlyMissing(true);}}>Ver faltando</button>
           )}
         </div>
         {!champDone&&!champLocked&&(
@@ -1096,11 +1141,11 @@ function Bolao(){
       </div>
 
       {/* Champion */}
-      <div id="champion-card" className="shine-card" style={{background:'linear-gradient(135deg,rgba(255,255,255,.92),rgba(255,251,235,.86))',border:`1px solid rgba(180,83,9,.18)`,borderRadius:24,padding:'18px',marginBottom:14,boxShadow:shadow,backdropFilter:'blur(14px)'}}>
+      <div id="champion-card" style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:16,padding:'16px',marginBottom:14,boxShadow:shadow}}>
         <div style={{display:'flex',alignItems:'center',gap:10,marginBottom:12}}>
-          <div style={{width:46,height:46,background:'linear-gradient(135deg,#fef3c7,#f59e0b)',borderRadius:16,display:'flex',alignItems:'center',justifyContent:'center',fontSize:22,boxShadow:'0 14px 28px rgba(180,83,9,.2)'}}>🏆</div>
+          <div style={{width:40,height:40,background:T.goldBg,borderRadius:12,display:'flex',alignItems:'center',justifyContent:'center',fontSize:20}}>🏆</div>
           <div>
-            <div style={{fontSize:15,fontWeight:900,color:T.txt1}}>Campeão da Copa</div>
+            <div style={{fontSize:14,fontWeight:700,color:T.txt1}}>Campeão da Copa</div>
             <div style={{fontSize:11,color:T.txt3}}>Vale {CHAMP_PTS} pontos · não muda após o início da Copa</div>
             <div style={{fontSize:10,color:T.txt3,marginTop:1}}>Prazo: {champLockLabel}</div>
           </div>
@@ -1136,13 +1181,13 @@ function Bolao(){
 
       {/* Mini ranking */}
       <div style={sec}>Classificação</div>
-      <div style={{background:'rgba(255,255,255,.84)',borderRadius:22,border:`1px solid ${T.border}`,boxShadow:shadow,marginBottom:14,overflow:'hidden',backdropFilter:'blur(14px)'}}>
+      <div style={{background:T.card,borderRadius:16,border:`1px solid ${T.border}`,boxShadow:shadow,marginBottom:14,overflow:'hidden'}}>
         {board.slice(0,5).map((p,i)=>(
-          <div key={p.uid} style={{display:'flex',alignItems:'center',gap:12,padding:'13px 16px',background:p.uid===me?'linear-gradient(90deg,#ecfdf5,rgba(255,255,255,.72))':i===0?'linear-gradient(90deg,#fffbeb,rgba(255,255,255,.72))':'transparent',borderBottom:i<Math.min(board.length,5)-1?`1px solid ${T.border}`:'none'}}>
+          <div key={p.uid} style={{display:'flex',alignItems:'center',gap:12,padding:'12px 16px',background:p.uid===me?'#F0FDF4':'transparent',borderBottom:i<Math.min(board.length,5)-1?`1px solid ${T.border}`:'none'}}>
             <span style={{fontSize:16,width:24,textAlign:'center'}}>{i===0?'🥇':i===1?'🥈':i===2?'🥉':`${i+1}`}</span>
-            <span style={{flex:1,fontSize:13,fontWeight:900,color:p.uid===me?T.accent:T.txt1}}>{p.name}{p.uid===me&&<span style={{fontSize:11,color:T.txt3,fontWeight:600}}> · você</span>}</span>
+            <span style={{flex:1,fontSize:13,fontWeight:600,color:p.uid===me?T.accent:T.txt1}}>{p.name}{p.uid===me&&<span style={{fontSize:11,color:T.txt3,fontWeight:400}}> · você</span>}</span>
             <div style={{fontSize:11,color:T.txt3,display:'flex',gap:10}}><span style={{color:T.ok}}>⭐{p.exact}</span><span style={{color:T.half}}>✓{p.win}</span></div>
-            <span style={{fontSize:20,fontWeight:900,color:T.txt1,minWidth:28,textAlign:'right'}}>{p.pts}</span>
+            <span style={{fontSize:18,fontWeight:800,color:T.txt1,minWidth:28,textAlign:'right'}}>{p.pts}</span>
           </div>
         ))}
         {board.length>5&&<button style={{width:'100%',padding:'11px',background:'none',border:'none',borderTop:`1px solid ${T.border}`,fontSize:12,color:T.accent,cursor:'pointer',fontWeight:600}} onClick={()=>setTab('ranking')}>Ver ranking completo ({board.length} participantes) →</button>}
@@ -1153,9 +1198,9 @@ function Bolao(){
       {matches.filter(m=>isToday(m.dt)).length>0&&<><div style={sec}>Jogos de Hoje</div>{matches.filter(m=>isToday(m.dt)).map(m=><MatchCard key={m.id} m={m}/>)}</>}
       {matches.filter(m=>isUpcoming(m.dt)).length>0&&<><div style={sec}>Em Breve</div>{matches.filter(m=>isUpcoming(m.dt)).slice(0,3).map(m=><MatchCard key={m.id} m={m}/>)}</>}
       {matches.filter(m=>isToday(m.dt)||isUpcoming(m.dt)).length===0&&(
-        <div style={{background:'rgba(255,255,255,.78)',border:`1px solid ${T.border}`,borderRadius:24,padding:'32px 22px',textAlign:'center',boxShadow:shadow,backdropFilter:'blur(14px)'}}>
-          <div style={{fontSize:42,marginBottom:10}}>🗓️</div>
-          <div style={{fontSize:15,color:T.txt2,lineHeight:1.65,fontWeight:600}}>Nenhum jogo nas próximas 24h.<br/>{nextMatches[0]?<>Próximo: <strong style={{color:T.accent}}>{fDate(nextMatches[0].dt)} às {fTime(nextMatches[0].dt)}</strong>.</>:<>Aguardando próximos jogos.</>}</div>
+        <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:16,padding:'28px 20px',textAlign:'center',boxShadow:shadow}}>
+          <div style={{fontSize:36,marginBottom:8}}>🗓️</div>
+          <div style={{fontSize:14,color:T.txt2,lineHeight:1.6}}>Nenhum jogo nas próximas 24h.<br/>{nextMatches[0]?<>Próximo: <strong style={{color:T.accent}}>{fDate(nextMatches[0].dt)} às {fTime(nextMatches[0].dt)}</strong>.</>:<>Aguardando próximos jogos.</>}</div>
         </div>
       )}
       <div style={{height:88}}/>
@@ -1173,6 +1218,33 @@ function Bolao(){
         <button className="pill" style={{padding:'7px 12px',borderRadius:14,border:`1px solid ${onlyMissing?T.half:T.border}`,fontSize:11,fontWeight:700,background:onlyMissing?T.halfBg:T.card,color:onlyMissing?T.half:T.txt3}} onClick={()=>setOnlyMissing(v=>!v)}>
           {onlyMissing?'✓ Faltando':'Faltando'}
         </button>
+      </div>
+      <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:16,padding:'16px',boxShadow:shadow,marginBottom:14}}>
+        <div style={{display:'flex',alignItems:'flex-start',gap:12,marginBottom:12}}>
+          <div style={{width:40,height:40,borderRadius:14,background:T.accentLt,display:'flex',alignItems:'center',justifyContent:'center',fontSize:20,flexShrink:0}}>⚽</div>
+          <div style={{flex:1}}>
+            <div style={{fontSize:14,fontWeight:900,color:T.txt1}}>Seu painel de palpites</div>
+            <div style={{fontSize:12,color:T.txt2,lineHeight:1.55,marginTop:3}}>
+              Os jogos estão agrupados por dia. Você pode preencher com calma, voltar para revisar e o card avisa quando está salvo, pendente, fechado ou com resultado.
+            </div>
+          </div>
+        </div>
+        <div className="info-grid" style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:8}}>
+          {[
+            {v:savedPredCount,l:'salvos',c:T.accent,b:T.accentLt},
+            {v:myStats.missing,l:'faltando',c:myStats.missing?T.half:T.accent,b:myStats.missing?T.halfBg:T.accentLt},
+            {v:lockedMatchCount,l:'fechados',c:lockedMatchCount?'#1D4ED8':T.txt3,b:lockedMatchCount?'#DBEAFE':T.bg},
+            {v:predictionDayGroups.length,l:'dias na lista',c:T.txt1,b:T.bg},
+          ].map(item=>(
+            <div key={item.l} style={{background:item.b,border:`1px solid ${T.border}`,borderRadius:12,padding:'10px 8px',textAlign:'center'}}>
+              <div style={{fontSize:18,fontWeight:900,color:item.c,lineHeight:1}}>{item.v}</div>
+              <div style={{fontSize:9,color:T.txt3,marginTop:4,textTransform:'uppercase',letterSpacing:.4}}>{item.l}</div>
+            </div>
+          ))}
+        </div>
+        <div style={{fontSize:11,color:T.txt3,lineHeight:1.5,marginTop:12}}>
+          Sugestão prática: use o filtro <strong>Faltando</strong> quando quiser preencher rápido tudo que ainda está aberto.
+        </div>
       </div>
       {predictionDayGroups.length===0&&<div style={{textAlign:'center',padding:'48px 0',color:T.txt3,fontSize:14}}>{onlyMissing?'Nenhum palpite faltando ✓':'Nenhuma partida encontrada.'}</div>}
       {predictionDayGroups.map((group,idx)=>{
@@ -1200,12 +1272,32 @@ function Bolao(){
   // ── Ranking Tab ─────────────────────────────────────────────────────────────
   const TabRanking=(
     <div style={{padding:'14px 14px'}}>
-      <div style={{display:'flex',gap:12,flexWrap:'wrap',marginBottom:14}}>
-        {[{c:T.ok,l:'Exato = 3pts'},{c:T.half,l:'Vencedor = 1pt'},{c:T.txt2,l:`Campeão = ${CHAMP_PTS}pts`}].map(x=>(
-          <span key={x.l} style={{fontSize:11,color:x.c,fontWeight:600}}>● {x.l}</span>
-        ))}
+      <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:16,padding:'16px',boxShadow:shadow,marginBottom:14}}>
+        <div style={{display:'flex',alignItems:'flex-start',gap:12,marginBottom:12}}>
+          <div style={{width:42,height:42,borderRadius:14,background:T.goldBg,display:'flex',alignItems:'center',justifyContent:'center',fontSize:21,flexShrink:0}}>🏆</div>
+          <div style={{flex:1}}>
+            <div style={{fontSize:15,fontWeight:900,color:T.txt1}}>Ranking geral</div>
+            <div style={{fontSize:12,color:T.txt2,lineHeight:1.55,marginTop:3}}>
+              A classificação soma os jogos que já têm resultado e, quando definido pelo admin, o bônus de campeão. Abaixo também tem ranking por dia para ver quem foi melhor em cada rodada.
+            </div>
+          </div>
+        </div>
+        <div className="info-grid" style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:8,marginBottom:12}}>
+          {[
+            {v:'3',l:'placar exato',c:T.ok,b:T.okBg},
+            {v:'1',l:'vencedor/empate',c:T.half,b:T.halfBg},
+            {v:`+${CHAMP_PTS}`,l:'campeão da Copa',c:T.gold,b:T.goldBg},
+          ].map(item=>(
+            <div key={item.l} style={{background:item.b,border:`1px solid ${T.border}`,borderRadius:12,padding:'10px 8px',textAlign:'center'}}>
+              <div style={{fontSize:20,fontWeight:900,color:item.c,lineHeight:1}}>{item.v}</div>
+              <div style={{fontSize:9,color:T.txt3,marginTop:4,textTransform:'uppercase',letterSpacing:.4}}>{item.l}</div>
+            </div>
+          ))}
+        </div>
+        <div style={{fontSize:11,color:T.txt3,lineHeight:1.5}}>
+          Desempate: pontos → exatos → vencedores → campeão → menos erros → ordem alfabética.
+        </div>
       </div>
-      <div style={{fontSize:11,color:T.txt3,marginBottom:10}}>Desempate: pontos → exatos → vencedores → campeão → menos erros → ordem alfabética.</div>
       <div style={{background:T.card,borderRadius:16,border:`1px solid ${T.border}`,boxShadow:shadow,overflow:'hidden',marginBottom:14}}>
         {board.map((p,i)=>(
           <div key={p.uid} style={{display:'flex',alignItems:'center',gap:12,padding:'14px 16px',background:p.uid===me?'#F0FDF4':i===0?'#FFFBEB':'transparent',borderBottom:i<board.length-1?`1px solid ${T.border}`:'none'}}>
@@ -1278,6 +1370,19 @@ function Bolao(){
     <div style={{padding:'14px'}}>
       <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:16,padding:'16px',boxShadow:shadow,marginBottom:12}}>
         <h3 style={{fontSize:15,color:T.txt1,marginBottom:8}}>📘 Regras do Bolão</h3>
+        <div className="info-grid" style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:8,marginBottom:14}}>
+          {[
+            {v:'3',l:'placar exato',c:T.ok,b:T.okBg},
+            {v:'1',l:'vencedor/empate',c:T.half,b:T.halfBg},
+            {v:`+${CHAMP_PTS}`,l:'campeão',c:T.gold,b:T.goldBg},
+            {v:'0',l:'erro',c:T.err,b:T.errBg},
+          ].map(item=>(
+            <div key={item.l} style={{background:item.b,border:`1px solid ${T.border}`,borderRadius:12,padding:'10px 8px',textAlign:'center'}}>
+              <div style={{fontSize:18,fontWeight:900,color:item.c,lineHeight:1}}>{item.v}</div>
+              <div style={{fontSize:9,color:T.txt3,marginTop:4,textTransform:'uppercase',letterSpacing:.4}}>{item.l}</div>
+            </div>
+          ))}
+        </div>
         <div style={{fontSize:12,color:T.txt2,lineHeight:1.7}}>
           <div>• Placar exato: <strong>3 pontos</strong>.</div>
           <div>• Acertar vencedor/empate: <strong>1 ponto</strong>.</div>
@@ -1410,6 +1515,32 @@ function Bolao(){
         <div style={{fontSize:15,fontWeight:800,color:T.txt1}}>Palpites gerais</div>
         <div style={{fontSize:11,color:T.txt3,marginTop:2}}>Veja o panorama do bolão sem revelar placares antes da hora.</div>
       </div>
+      <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:16,padding:'16px',boxShadow:shadow,marginBottom:14}}>
+        <div style={{display:'flex',alignItems:'flex-start',gap:12,marginBottom:12}}>
+          <div style={{width:42,height:42,borderRadius:14,background:T.accentLt,display:'flex',alignItems:'center',justifyContent:'center',fontSize:20,flexShrink:0}}>👀</div>
+          <div style={{flex:1}}>
+            <div style={{fontSize:14,fontWeight:900,color:T.txt1}}>Visão do grupo, sem spoiler</div>
+            <div style={{fontSize:12,color:T.txt2,lineHeight:1.55,marginTop:3}}>
+              Esta aba serve para ver participação e comparar palpites quando for justo. Antes da bola rolar, ela mostra só quem fez ou quem ainda está devendo.
+            </div>
+          </div>
+        </div>
+        <div className="info-grid" style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:8}}>
+          {[
+            {v:champPredCount,l:'campeões enviados',c:T.gold,b:T.goldBg},
+            {v:lockedMatchCount,l:'jogos reveláveis',c:lockedMatchCount?'#1D4ED8':T.txt3,b:lockedMatchCount?'#DBEAFE':T.bg},
+            {v:resultMatchCount,l:'com resultado',c:resultMatchCount?T.accent:T.txt3,b:resultMatchCount?T.accentLt:T.bg},
+          ].map(item=>(
+            <div key={item.l} style={{background:item.b,border:`1px solid ${T.border}`,borderRadius:12,padding:'10px 8px',textAlign:'center'}}>
+              <div style={{fontSize:18,fontWeight:900,color:item.c,lineHeight:1}}>{item.v}</div>
+              <div style={{fontSize:9,color:T.txt3,marginTop:4,textTransform:'uppercase',letterSpacing:.4}}>{item.l}</div>
+            </div>
+          ))}
+        </div>
+        <div style={{fontSize:11,color:T.txt3,lineHeight:1.5,marginTop:12}}>
+          Regra de privacidade: placares aparecem depois que o jogo começa. O campeão aparece depois do início da Copa.
+        </div>
+      </div>
       <details open={champLocked} style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:12,boxShadow:shadow,marginBottom:10,overflow:'hidden'}}>
         <summary style={{listStyle:'none',cursor:'pointer',padding:'12px 14px',display:'flex',alignItems:'center',gap:10}}>
           <div style={{width:34,height:34,borderRadius:10,background:T.goldBg,display:'flex',alignItems:'center',justifyContent:'center',fontSize:18,flexShrink:0}}>🏆</div>
@@ -1528,25 +1659,22 @@ function Bolao(){
       {toast.msg&&<div style={{position:'fixed',top:14,left:'50%',transform:'translateX(-50%)',background:toast.ok?T.ok:T.err,color:'#fff',padding:'9px 22px',borderRadius:24,fontSize:13,fontWeight:600,zIndex:1000,boxShadow:'0 4px 20px rgba(0,0,0,.15)',whiteSpace:'nowrap'}}>{toast.msg}</div>}
 
       {/* Top bar */}
-      <div style={{background:'transparent',padding:'14px 14px 8px',position:'sticky',top:0,zIndex:50}}>
-        <div style={{maxWidth:1040,margin:'0 auto',display:'flex',alignItems:'center',justifyContent:'space-between',background:'rgba(255,255,255,.72)',backdropFilter:'blur(18px)',border:`1px solid ${T.border}`,borderRadius:22,padding:'10px 12px',boxShadow:'0 18px 40px rgba(5,46,22,.08)'}}>
-          <div style={{display:'flex',alignItems:'center',gap:10}}>
-            <span style={{width:34,height:34,borderRadius:12,background:'linear-gradient(135deg,#ecfccb,#16a34a)',display:'flex',alignItems:'center',justifyContent:'center',fontSize:17,boxShadow:'0 8px 18px rgba(22,163,74,.22)'}}>⚽</span>
-            <div style={{display:'flex',flexDirection:'column',lineHeight:1}}>
-              <span style={{fontFamily:'\"Bebas Neue\", sans-serif',fontSize:24,fontWeight:400,color:T.accent,letterSpacing:2.2}}>BOLÃO 2026</span>
-              <span style={{fontSize:9,color:T.txt3,fontWeight:800,letterSpacing:1.4,textTransform:'uppercase'}}>Copa entre amigos</span>
-            </div>
+      <div style={{background:'rgba(255,255,255,.82)',backdropFilter:'blur(10px)',borderBottom:`1px solid ${T.border}`,padding:'12px 14px',position:'sticky',top:0,zIndex:50,boxShadow:'0 1px 4px rgba(0,0,0,.04)'}}>
+        <div style={{maxWidth:980,margin:'0 auto',display:'flex',alignItems:'center',justifyContent:'space-between'}}>
+          <div style={{display:'flex',alignItems:'center',gap:8}}>
+            <span style={{fontSize:18}}>⚽</span>
+            <span style={{fontFamily:'\"Bebas Neue\", sans-serif',fontSize:21,fontWeight:400,color:T.accent,letterSpacing:1.8}}>BOLÃO 2026</span>
           </div>
           <div style={{display:'flex',alignItems:'center',gap:8}}>
             <span style={{fontSize:11,color:T.txt3,maxWidth:120,overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}}>{meName}</span>
-            <button style={{padding:'7px 13px',borderRadius:999,border:`1px solid ${T.border}`,background:'linear-gradient(180deg,#fff,rgba(255,255,255,.74))',color:T.txt2,fontSize:11,fontWeight:800,cursor:'pointer',boxShadow:'0 8px 18px rgba(15,23,42,.06)'}} onClick={copyLink}>🔗 Convidar</button>
-            <button style={{padding:'6px 11px',borderRadius:999,border:`1px solid ${T.border}`,background:'rgba(255,255,255,.58)',color:T.txt3,fontSize:10,fontWeight:700,cursor:'pointer'}} onClick={logout}>Sair</button>
+            <button style={{padding:'5px 12px',borderRadius:20,border:`1px solid ${T.border}`,background:T.card,color:T.txt2,fontSize:11,fontWeight:600,cursor:'pointer'}} onClick={copyLink}>🔗 Convidar</button>
+            <button style={{padding:'4px 10px',borderRadius:10,border:`1px solid ${T.border}`,background:T.card,color:T.txt3,fontSize:10,cursor:'pointer'}} onClick={logout}>Sair</button>
           </div>
         </div>
       </div>
 
       {/* Content */}
-      <div style={{flex:1,overflowY:'auto',maxWidth:1040,width:'100%',margin:'0 auto',paddingBottom:12}}>
+      <div style={{flex:1,overflowY:'auto',maxWidth:980,width:'100%',margin:'0 auto'}}>
         {tab==='home'&&TabHome}
         {tab==='matches'&&TabMatches}
         {tab==='general'&&TabGeneralPreds}
@@ -1556,7 +1684,7 @@ function Bolao(){
       </div>
 
       {/* Bottom nav */}
-      <div style={{position:'fixed',bottom:14,left:'50%',transform:'translateX(-50%)',width:'min(760px,calc(100% - 24px))',background:'rgba(255,255,255,.78)',backdropFilter:'blur(18px)',border:`1px solid ${T.border}`,borderRadius:26,display:'flex',boxShadow:'0 18px 42px rgba(5,46,22,.16)',zIndex:100,padding:6}}>
+      <div style={{position:'fixed',bottom:0,left:0,right:0,background:'rgba(255,255,255,.9)',backdropFilter:'blur(10px)',borderTop:`1px solid ${T.border}`,display:'flex',boxShadow:'0 -2px 12px rgba(0,0,0,.06)',zIndex:100}}>
         {[
           {k:'home',icon:'🏠',l:'Início'},
           {k:'matches',icon:'⚽',l:'Seus palpites'},
@@ -1564,7 +1692,7 @@ function Bolao(){
           {k:'ranking',icon:'🏆',l:'Ranking'},
           isAdmin ? {k:'admin',icon:'⚙️',l:'Admin'} : {k:'rules',icon:'📘',l:'Regras'},
         ].map(({k,icon,l})=>(
-          <button key={k} style={{flex:1,display:'flex',flexDirection:'column',alignItems:'center',gap:2,padding:'9px 0 calc(8px + env(safe-area-inset-bottom))',background:tab===k?'linear-gradient(180deg,#dcfce7,#ffffff)':'transparent',border:'none',borderRadius:20,cursor:'pointer',color:tab===k?T.accent:T.txt3,boxShadow:tab===k?'0 10px 22px rgba(22,163,74,.14)':'none'}}
+          <button key={k} style={{flex:1,display:'flex',flexDirection:'column',alignItems:'center',gap:2,padding:'10px 0 calc(10px + env(safe-area-inset-bottom))',background:'none',border:'none',cursor:'pointer',color:tab===k?T.accent:T.txt3,borderTop:`2px solid ${tab===k?T.accent:'transparent'}`}}
             onClick={()=>{
               if(k==='admin'&&!isAdmin){
                 showToast('Sem permissão de admin para este usuário.',false);
