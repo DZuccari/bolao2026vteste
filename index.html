@@ -25,12 +25,28 @@
 *{box-sizing:border-box;margin:0;padding:0;}
 body{
   background:
-    radial-gradient(1100px 500px at -10% -10%, #ecfdf5 0%, rgba(236,253,245,0) 60%),
-    radial-gradient(900px 460px at 110% -15%, #fef9c3 0%, rgba(254,249,195,0) 62%),
-    linear-gradient(180deg,#f8fafc 0%,#f1f5f9 100%);
+    radial-gradient(900px 420px at 8% -12%, rgba(22,163,74,.22) 0%, rgba(22,163,74,0) 64%),
+    radial-gradient(760px 360px at 98% 0%, rgba(234,179,8,.24) 0%, rgba(234,179,8,0) 62%),
+    radial-gradient(620px 420px at 80% 95%, rgba(20,184,166,.12) 0%, rgba(20,184,166,0) 65%),
+    linear-gradient(180deg,#f8fafc 0%,#eef4f1 54%,#edf2f7 100%);
   font-family:"DM Sans",system-ui,-apple-system,sans-serif;
   color:var(--ink-900);
+  min-height:100vh;
 }
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(90deg,rgba(22,101,52,.045) 1px,transparent 1px),
+    linear-gradient(180deg,rgba(22,101,52,.035) 1px,transparent 1px),
+    radial-gradient(circle at 50% -10%,rgba(255,255,255,.8),rgba(255,255,255,0) 38%);
+  background-size:72px 72px,72px 72px,100% 100%;
+  mask-image:linear-gradient(180deg,rgba(0,0,0,.95),rgba(0,0,0,.45) 55%,rgba(0,0,0,.2));
+  z-index:0;
+}
+#root{position:relative;z-index:1;}
 input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none;}
 input[type=number]{-moz-appearance:textfield;}
 ::-webkit-scrollbar{width:6px;}
@@ -44,16 +60,114 @@ input[type=number]{-moz-appearance:textfield;}
 .pill{transition:all .18s;cursor:pointer;}
 summary{list-style:none;}
 summary::-webkit-details-marker{display:none;}
+summary:hover{filter:brightness(.995);}
 .match-card{
   border:1px solid rgba(17,24,39,.08)!important;
   animation:cardIn .32s ease both;
+  position:relative;
+  isolation:isolate;
+  background:
+    radial-gradient(260px 120px at 50% -30%,rgba(22,163,74,.12),transparent 72%),
+    linear-gradient(180deg,rgba(255,255,255,.98),rgba(255,255,255,.94))!important;
 }
+.match-card:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(90deg,transparent 0 48%,rgba(22,163,74,.08) 48% 52%,transparent 52%),
+    radial-gradient(circle at 50% 50%,transparent 0 46px,rgba(22,163,74,.08) 47px 48px,transparent 49px);
+  opacity:.5;
+  z-index:0;
+}
+.match-card>*{position:relative;z-index:1;}
 .match-card:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(17,24,39,.12)!important;}
 select{cursor:pointer;}
 .login-grid{grid-template-columns:minmax(0,1.05fr) minmax(320px,.95fr);}
 .login-hero{min-height:480px;}
+.login-hero,.home-hero,.join-hero{
+  isolation:isolate;
+}
+.login-hero:after,.home-hero:after,.join-hero:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(115deg,rgba(255,255,255,.12),rgba(255,255,255,0) 38%),
+    radial-gradient(circle at 74% 22%,rgba(255,255,255,.16),rgba(255,255,255,0) 28%),
+    linear-gradient(90deg,transparent 0 49.4%,rgba(255,255,255,.10) 49.4% 50.6%,transparent 50.6%);
+  opacity:.8;
+  z-index:0;
+}
+.login-hero>*,.home-hero>*,.join-hero>*{position:relative;z-index:1;}
 .login-score-grid,.info-grid{grid-template-columns:repeat(3,1fr);}
 .join-grid{grid-template-columns:minmax(0,.9fr) minmax(300px,1fr);}
+.lux-card{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  box-shadow:0 12px 34px rgba(17,24,39,.08),0 1px 2px rgba(17,24,39,.04)!important;
+}
+.lux-card:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(240px 120px at 14% -20%,rgba(22,163,74,.12),transparent 70%),
+    radial-gradient(260px 150px at 110% 20%,rgba(234,179,8,.12),transparent 64%),
+    linear-gradient(180deg,rgba(255,255,255,.65),rgba(255,255,255,0));
+  z-index:0;
+}
+.lux-card>*{position:relative;z-index:1;}
+.topbar-premium{
+  background:rgba(255,255,255,.76)!important;
+  border-bottom:1px solid rgba(22,101,52,.12)!important;
+  box-shadow:0 10px 28px rgba(15,23,42,.06)!important;
+}
+.topbar-premium:before{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:-1px;
+  height:2px;
+  background:linear-gradient(90deg,transparent,#16a34a,#eab308,transparent);
+  opacity:.75;
+}
+.bottom-nav-premium{
+  background:rgba(255,255,255,.78)!important;
+  border-top:1px solid rgba(22,101,52,.12)!important;
+  box-shadow:0 -18px 42px rgba(15,23,42,.10)!important;
+}
+.bottom-nav-premium button{
+  transition:transform .18s ease,color .18s ease,background .18s ease;
+}
+.bottom-nav-premium button:hover{
+  background:rgba(22,163,74,.045)!important;
+  transform:translateY(-1px);
+}
+.btn-acc,.pill,summary,button{
+  -webkit-tap-highlight-color:transparent;
+}
+.mini-tile{
+  position:relative;
+  overflow:hidden;
+}
+.mini-tile:after{
+  content:"";
+  position:absolute;
+  inset:auto -18px -24px auto;
+  width:52px;
+  height:52px;
+  border-radius:50%;
+  background:rgba(255,255,255,.35);
+}
+.brand-chip{
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 8px 22px rgba(0,0,0,.10);
+}
 @keyframes cardIn{
   from{opacity:0;transform:translateY(8px);}
   to{opacity:1;transform:translateY(0);}
@@ -98,8 +212,8 @@ const T = {
   ok:'#16a34a', okBg:'#dcfce7', half:'#D97706', halfBg:'#fef3c7',
   err:'#DC2626', errBg:'#fee2e2', gold:'#B45309', goldBg:'#fef3c7',
 };
-const shadow = '0 1px 3px rgba(0,0,0,.06),0 1px 8px rgba(0,0,0,.04)';
-const shadowMd = '0 2px 12px rgba(0,0,0,.08),0 1px 3px rgba(0,0,0,.05)';
+const shadow = '0 10px 28px rgba(17,24,39,.07),0 1px 2px rgba(17,24,39,.04)';
+const shadowMd = '0 24px 60px rgba(17,24,39,.12),0 2px 6px rgba(17,24,39,.06)';
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 const NAME_STORAGE_KEY = 'bolao2026_me';
@@ -923,7 +1037,7 @@ function Bolao(){
               {n:'1',l:'vencedor/empate'},
               {n:`+${CHAMP_PTS}`,l:'campeão'},
             ].map(x=>(
-              <div key={x.l} style={{background:'rgba(255,255,255,.13)',border:'1px solid rgba(255,255,255,.16)',borderRadius:16,padding:'14px 10px',textAlign:'center'}}>
+              <div key={x.l} className="brand-chip mini-tile" style={{background:'rgba(255,255,255,.13)',border:'1px solid rgba(255,255,255,.16)',borderRadius:16,padding:'14px 10px',textAlign:'center'}}>
                 <div style={{fontSize:28,fontWeight:900,color:'#fff',lineHeight:1}}>{x.n}</div>
                 <div style={{fontSize:10,color:'rgba(255,255,255,.7)',fontWeight:800,textTransform:'uppercase',letterSpacing:.7,marginTop:5}}>{x.l}</div>
               </div>
@@ -931,13 +1045,13 @@ function Bolao(){
           </div>
         </div>
         <div style={{display:'flex',flexDirection:'column',gap:12}}>
-          <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:22,padding:'22px',boxShadow:shadowMd}}>
+          <div className="lux-card" style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:22,padding:'22px',boxShadow:shadowMd}}>
             <div style={{fontSize:18,fontWeight:900,color:T.txt1,marginBottom:6}}>Entre no bolão</div>
             <p style={{fontSize:13,color:T.txt2,lineHeight:1.6,marginBottom:16}}>Use sua conta Google para registrar seu nome e salvar seus palpites com segurança.</p>
             <button className="btn-acc" style={{...btnAcc,width:'100%',padding:14,fontSize:15}} onClick={signInGoogle}>Entrar com Google</button>
             <div style={{fontSize:11,color:T.txt3,textAlign:'center',marginTop:12}}>Seu palpite de campeão trava no início do primeiro jogo.</div>
           </div>
-          <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:22,padding:'18px',boxShadow:shadow}}>
+          <div className="lux-card" style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:22,padding:'18px',boxShadow:shadow}}>
             <div style={{fontSize:13,fontWeight:900,color:T.txt1,marginBottom:12}}>Como funciona</div>
             {[
               ['1','Entre e defina seu nome','Esse é o nome que aparece para seus amigos.'],
@@ -953,7 +1067,7 @@ function Bolao(){
               </div>
             ))}
           </div>
-          <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:22,padding:'18px',boxShadow:shadow}}>
+          <div className="lux-card" style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:22,padding:'18px',boxShadow:shadow}}>
             <div style={{fontSize:13,fontWeight:900,color:T.txt1,marginBottom:12}}>O que você acompanha</div>
             <div className="info-grid" style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:8}}>
               {[
@@ -980,7 +1094,7 @@ function Bolao(){
   if(!meReady) return (
     <div style={{minHeight:'100vh',background:T.bg,display:'flex',alignItems:'center',justifyContent:'center',padding:24}}>
       <div className="join-grid" style={{width:'100%',maxWidth:760,display:'grid',gridTemplateColumns:'minmax(0,.9fr) minmax(300px,1fr)',gap:14}}>
-        <div style={{background:'linear-gradient(135deg,#166534,#16a34a)',borderRadius:22,padding:24,color:'#fff',boxShadow:shadowMd,position:'relative',overflow:'hidden'}}>
+        <div className="join-hero" style={{background:'linear-gradient(135deg,#166534,#16a34a)',borderRadius:22,padding:24,color:'#fff',boxShadow:shadowMd,position:'relative',overflow:'hidden'}}>
           <div style={{position:'absolute',right:-40,top:-50,width:150,height:150,borderRadius:'50%',background:'rgba(255,255,255,.09)'}}/>
           <div style={{fontSize:12,fontWeight:900,letterSpacing:1,textTransform:'uppercase',color:'rgba(255,255,255,.72)',marginBottom:10}}>Quase lá</div>
           <div style={{fontFamily:'\"Bebas Neue\", sans-serif',fontSize:44,letterSpacing:1.5,lineHeight:1}}>Crie sua identidade no bolão</div>
@@ -996,7 +1110,7 @@ function Bolao(){
             ))}
           </div>
         </div>
-        <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:22,padding:24,boxShadow:shadowMd}}>
+        <div className="lux-card" style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:22,padding:24,boxShadow:shadowMd}}>
           <h2 style={{fontSize:18,color:T.txt1,marginBottom:8}}>Defina seu nome no bolão</h2>
           <p style={{fontSize:13,color:T.txt2,lineHeight:1.6,marginBottom:14}}>Use um nome que seus amigos reconheçam. Ele será exibido só para quem entrou no bolão.</p>
           <input className="inp" style={{...inpSt,marginBottom:12,fontSize:15}} placeholder="Seu nome no bolão" value={nameInput} maxLength="24" onChange={e=>setNameInput(e.target.value)} onKeyDown={e=>e.key==='Enter'&&join()}/>
@@ -1014,7 +1128,7 @@ function Bolao(){
   const TabHome=(
     <div style={{padding:'16px 14px 0'}}>
       {/* Hero */}
-      <div style={{background:'linear-gradient(135deg,#166534 0%,#16a34a 55%,#65a30d 100%)',borderRadius:18,padding:'20px 20px 16px',marginBottom:14,position:'relative',overflow:'hidden'}}>
+      <div className="home-hero" style={{background:'linear-gradient(135deg,#166534 0%,#16a34a 55%,#65a30d 100%)',borderRadius:18,padding:'20px 20px 16px',marginBottom:14,position:'relative',overflow:'hidden',boxShadow:'0 18px 48px rgba(22,101,52,.24)'}}>
         <div style={{position:'absolute',top:-30,right:-30,width:120,height:120,borderRadius:'50%',background:'rgba(255,255,255,.07)',pointerEvents:'none'}}/>
         <div style={{display:'flex',justifyContent:'space-between',alignItems:'flex-start',marginBottom:16}}>
           <div>
@@ -1030,7 +1144,7 @@ function Bolao(){
         </div>
         <div style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:8}}>
           {[{v:myStats.pts,l:'pts',c:'#fff'},{v:myStats.exact,l:'exatos',c:'#bbf7d0'},{v:myStats.win,l:'vencedor',c:'#fde68a'},{v:myStats.miss,l:'erros',c:'#fecaca'}].map(s=>(
-            <div key={s.l} style={{background:'rgba(255,255,255,.12)',borderRadius:12,padding:'10px 6px',textAlign:'center'}}>
+            <div key={s.l} className="brand-chip mini-tile" style={{background:'rgba(255,255,255,.12)',borderRadius:12,padding:'10px 6px',textAlign:'center'}}>
               <div style={{fontSize:22,fontWeight:900,color:s.c,lineHeight:1}}>{s.v}</div>
               <div style={{fontSize:9,color:'rgba(255,255,255,.65)',marginTop:3}}>{s.l}</div>
             </div>
@@ -1060,7 +1174,7 @@ function Bolao(){
       </div>
 
       {/* Progress */}
-      <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:16,padding:'16px',marginBottom:14,boxShadow:shadow}}>
+      <div className="lux-card" style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:16,padding:'16px',marginBottom:14,boxShadow:shadow}}>
         <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',gap:12,marginBottom:12}}>
           <div>
             <div style={{fontSize:14,fontWeight:800,color:T.txt1}}>Seu progresso</div>
@@ -1078,7 +1192,7 @@ function Bolao(){
             {v:champDone?'sim':'não',l:'campeão',c:champDone?T.gold:T.txt3,b:champDone?T.goldBg:T.bg},
             {v:urgentPendingAll.length,l:'48h',c:urgentPendingAll.length?T.err:T.txt3,b:urgentPendingAll.length?T.errBg:T.bg},
           ].map(item=>(
-            <div key={item.l} style={{background:item.b,borderRadius:12,padding:'9px 6px',textAlign:'center',border:`1px solid ${T.border}`}}>
+            <div key={item.l} className="mini-tile" style={{background:item.b,borderRadius:12,padding:'9px 6px',textAlign:'center',border:`1px solid ${T.border}`}}>
               <div style={{fontSize:16,fontWeight:900,color:item.c,lineHeight:1,textTransform:'uppercase'}}>{item.v}</div>
               <div style={{fontSize:9,color:T.txt3,marginTop:4}}>{item.l}</div>
             </div>
@@ -1087,7 +1201,7 @@ function Bolao(){
       </div>
 
       {/* Action center */}
-      <div style={{background:actionCount?T.halfBg:T.card,border:`1px solid ${actionCount?'#FCD34D':T.border}`,borderRadius:16,padding:'16px',marginBottom:14,boxShadow:shadow}}>
+      <div className="lux-card" style={{background:actionCount?T.halfBg:T.card,border:`1px solid ${actionCount?'#FCD34D':T.border}`,borderRadius:16,padding:'16px',marginBottom:14,boxShadow:shadow}}>
         <div style={{display:'flex',alignItems:'center',gap:10,marginBottom:12}}>
           <div style={{width:36,height:36,borderRadius:12,background:actionCount?'#FEF3C7':T.accentLt,display:'flex',alignItems:'center',justifyContent:'center',fontSize:18}}>
             {actionCount?'⚠️':'✅'}
@@ -1141,7 +1255,7 @@ function Bolao(){
       </div>
 
       {/* Champion */}
-      <div id="champion-card" style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:16,padding:'16px',marginBottom:14,boxShadow:shadow}}>
+      <div id="champion-card" className="lux-card" style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:16,padding:'16px',marginBottom:14,boxShadow:shadow}}>
         <div style={{display:'flex',alignItems:'center',gap:10,marginBottom:12}}>
           <div style={{width:40,height:40,background:T.goldBg,borderRadius:12,display:'flex',alignItems:'center',justifyContent:'center',fontSize:20}}>🏆</div>
           <div>
@@ -1181,7 +1295,7 @@ function Bolao(){
 
       {/* Mini ranking */}
       <div style={sec}>Classificação</div>
-      <div style={{background:T.card,borderRadius:16,border:`1px solid ${T.border}`,boxShadow:shadow,marginBottom:14,overflow:'hidden'}}>
+      <div className="lux-card" style={{background:T.card,borderRadius:16,border:`1px solid ${T.border}`,boxShadow:shadow,marginBottom:14,overflow:'hidden'}}>
         {board.slice(0,5).map((p,i)=>(
           <div key={p.uid} style={{display:'flex',alignItems:'center',gap:12,padding:'12px 16px',background:p.uid===me?'#F0FDF4':'transparent',borderBottom:i<Math.min(board.length,5)-1?`1px solid ${T.border}`:'none'}}>
             <span style={{fontSize:16,width:24,textAlign:'center'}}>{i===0?'🥇':i===1?'🥈':i===2?'🥉':`${i+1}`}</span>
@@ -1198,7 +1312,7 @@ function Bolao(){
       {matches.filter(m=>isToday(m.dt)).length>0&&<><div style={sec}>Jogos de Hoje</div>{matches.filter(m=>isToday(m.dt)).map(m=><MatchCard key={m.id} m={m}/>)}</>}
       {matches.filter(m=>isUpcoming(m.dt)).length>0&&<><div style={sec}>Em Breve</div>{matches.filter(m=>isUpcoming(m.dt)).slice(0,3).map(m=><MatchCard key={m.id} m={m}/>)}</>}
       {matches.filter(m=>isToday(m.dt)||isUpcoming(m.dt)).length===0&&(
-        <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:16,padding:'28px 20px',textAlign:'center',boxShadow:shadow}}>
+        <div className="lux-card" style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:16,padding:'28px 20px',textAlign:'center',boxShadow:shadow}}>
           <div style={{fontSize:36,marginBottom:8}}>🗓️</div>
           <div style={{fontSize:14,color:T.txt2,lineHeight:1.6}}>Nenhum jogo nas próximas 24h.<br/>{nextMatches[0]?<>Próximo: <strong style={{color:T.accent}}>{fDate(nextMatches[0].dt)} às {fTime(nextMatches[0].dt)}</strong>.</>:<>Aguardando próximos jogos.</>}</div>
         </div>
@@ -1219,7 +1333,7 @@ function Bolao(){
           {onlyMissing?'✓ Faltando':'Faltando'}
         </button>
       </div>
-      <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:16,padding:'16px',boxShadow:shadow,marginBottom:14}}>
+      <div className="lux-card" style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:16,padding:'16px',boxShadow:shadow,marginBottom:14}}>
         <div style={{display:'flex',alignItems:'flex-start',gap:12,marginBottom:12}}>
           <div style={{width:40,height:40,borderRadius:14,background:T.accentLt,display:'flex',alignItems:'center',justifyContent:'center',fontSize:20,flexShrink:0}}>⚽</div>
           <div style={{flex:1}}>
@@ -1236,7 +1350,7 @@ function Bolao(){
             {v:lockedMatchCount,l:'fechados',c:lockedMatchCount?'#1D4ED8':T.txt3,b:lockedMatchCount?'#DBEAFE':T.bg},
             {v:predictionDayGroups.length,l:'dias na lista',c:T.txt1,b:T.bg},
           ].map(item=>(
-            <div key={item.l} style={{background:item.b,border:`1px solid ${T.border}`,borderRadius:12,padding:'10px 8px',textAlign:'center'}}>
+            <div key={item.l} className="mini-tile" style={{background:item.b,border:`1px solid ${T.border}`,borderRadius:12,padding:'10px 8px',textAlign:'center'}}>
               <div style={{fontSize:18,fontWeight:900,color:item.c,lineHeight:1}}>{item.v}</div>
               <div style={{fontSize:9,color:T.txt3,marginTop:4,textTransform:'uppercase',letterSpacing:.4}}>{item.l}</div>
             </div>
@@ -1272,7 +1386,7 @@ function Bolao(){
   // ── Ranking Tab ─────────────────────────────────────────────────────────────
   const TabRanking=(
     <div style={{padding:'14px 14px'}}>
-      <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:16,padding:'16px',boxShadow:shadow,marginBottom:14}}>
+      <div className="lux-card" style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:16,padding:'16px',boxShadow:shadow,marginBottom:14}}>
         <div style={{display:'flex',alignItems:'flex-start',gap:12,marginBottom:12}}>
           <div style={{width:42,height:42,borderRadius:14,background:T.goldBg,display:'flex',alignItems:'center',justifyContent:'center',fontSize:21,flexShrink:0}}>🏆</div>
           <div style={{flex:1}}>
@@ -1288,7 +1402,7 @@ function Bolao(){
             {v:'1',l:'vencedor/empate',c:T.half,b:T.halfBg},
             {v:`+${CHAMP_PTS}`,l:'campeão da Copa',c:T.gold,b:T.goldBg},
           ].map(item=>(
-            <div key={item.l} style={{background:item.b,border:`1px solid ${T.border}`,borderRadius:12,padding:'10px 8px',textAlign:'center'}}>
+            <div key={item.l} className="mini-tile" style={{background:item.b,border:`1px solid ${T.border}`,borderRadius:12,padding:'10px 8px',textAlign:'center'}}>
               <div style={{fontSize:20,fontWeight:900,color:item.c,lineHeight:1}}>{item.v}</div>
               <div style={{fontSize:9,color:T.txt3,marginTop:4,textTransform:'uppercase',letterSpacing:.4}}>{item.l}</div>
             </div>
@@ -1368,7 +1482,7 @@ function Bolao(){
 
   const TabRules=(
     <div style={{padding:'14px'}}>
-      <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:16,padding:'16px',boxShadow:shadow,marginBottom:12}}>
+      <div className="lux-card" style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:16,padding:'16px',boxShadow:shadow,marginBottom:12}}>
         <h3 style={{fontSize:15,color:T.txt1,marginBottom:8}}>📘 Regras do Bolão</h3>
         <div className="info-grid" style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:8,marginBottom:14}}>
           {[
@@ -1377,7 +1491,7 @@ function Bolao(){
             {v:`+${CHAMP_PTS}`,l:'campeão',c:T.gold,b:T.goldBg},
             {v:'0',l:'erro',c:T.err,b:T.errBg},
           ].map(item=>(
-            <div key={item.l} style={{background:item.b,border:`1px solid ${T.border}`,borderRadius:12,padding:'10px 8px',textAlign:'center'}}>
+            <div key={item.l} className="mini-tile" style={{background:item.b,border:`1px solid ${T.border}`,borderRadius:12,padding:'10px 8px',textAlign:'center'}}>
               <div style={{fontSize:18,fontWeight:900,color:item.c,lineHeight:1}}>{item.v}</div>
               <div style={{fontSize:9,color:T.txt3,marginTop:4,textTransform:'uppercase',letterSpacing:.4}}>{item.l}</div>
             </div>
@@ -1401,7 +1515,7 @@ function Bolao(){
           )}
         </div>
       </div>
-      <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:16,padding:'16px',boxShadow:shadow}}>
+      <div className="lux-card" style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:16,padding:'16px',boxShadow:shadow}}>
         <h3 style={{fontSize:15,color:T.txt1,marginBottom:8}}>🔐 Regras Firebase (cole no console)</h3>
         <pre style={{fontSize:10,whiteSpace:'pre-wrap',background:T.bg,padding:10,borderRadius:10,border:`1px solid ${T.border}`,color:T.txt2}}>
 {`{
@@ -1515,7 +1629,7 @@ function Bolao(){
         <div style={{fontSize:15,fontWeight:800,color:T.txt1}}>Palpites gerais</div>
         <div style={{fontSize:11,color:T.txt3,marginTop:2}}>Veja o panorama do bolão sem revelar placares antes da hora.</div>
       </div>
-      <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:16,padding:'16px',boxShadow:shadow,marginBottom:14}}>
+      <div className="lux-card" style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:16,padding:'16px',boxShadow:shadow,marginBottom:14}}>
         <div style={{display:'flex',alignItems:'flex-start',gap:12,marginBottom:12}}>
           <div style={{width:42,height:42,borderRadius:14,background:T.accentLt,display:'flex',alignItems:'center',justifyContent:'center',fontSize:20,flexShrink:0}}>👀</div>
           <div style={{flex:1}}>
@@ -1531,7 +1645,7 @@ function Bolao(){
             {v:lockedMatchCount,l:'jogos reveláveis',c:lockedMatchCount?'#1D4ED8':T.txt3,b:lockedMatchCount?'#DBEAFE':T.bg},
             {v:resultMatchCount,l:'com resultado',c:resultMatchCount?T.accent:T.txt3,b:resultMatchCount?T.accentLt:T.bg},
           ].map(item=>(
-            <div key={item.l} style={{background:item.b,border:`1px solid ${T.border}`,borderRadius:12,padding:'10px 8px',textAlign:'center'}}>
+            <div key={item.l} className="mini-tile" style={{background:item.b,border:`1px solid ${T.border}`,borderRadius:12,padding:'10px 8px',textAlign:'center'}}>
               <div style={{fontSize:18,fontWeight:900,color:item.c,lineHeight:1}}>{item.v}</div>
               <div style={{fontSize:9,color:T.txt3,marginTop:4,textTransform:'uppercase',letterSpacing:.4}}>{item.l}</div>
             </div>
@@ -1659,16 +1773,16 @@ function Bolao(){
       {toast.msg&&<div style={{position:'fixed',top:14,left:'50%',transform:'translateX(-50%)',background:toast.ok?T.ok:T.err,color:'#fff',padding:'9px 22px',borderRadius:24,fontSize:13,fontWeight:600,zIndex:1000,boxShadow:'0 4px 20px rgba(0,0,0,.15)',whiteSpace:'nowrap'}}>{toast.msg}</div>}
 
       {/* Top bar */}
-      <div style={{background:'rgba(255,255,255,.82)',backdropFilter:'blur(10px)',borderBottom:`1px solid ${T.border}`,padding:'12px 14px',position:'sticky',top:0,zIndex:50,boxShadow:'0 1px 4px rgba(0,0,0,.04)'}}>
+      <div className="topbar-premium" style={{background:'rgba(255,255,255,.82)',backdropFilter:'blur(10px)',borderBottom:`1px solid ${T.border}`,padding:'12px 14px',position:'sticky',top:0,zIndex:50,boxShadow:'0 1px 4px rgba(0,0,0,.04)'}}>
         <div style={{maxWidth:980,margin:'0 auto',display:'flex',alignItems:'center',justifyContent:'space-between'}}>
-          <div style={{display:'flex',alignItems:'center',gap:8}}>
-            <span style={{fontSize:18}}>⚽</span>
-            <span style={{fontFamily:'\"Bebas Neue\", sans-serif',fontSize:21,fontWeight:400,color:T.accent,letterSpacing:1.8}}>BOLÃO 2026</span>
+          <div style={{display:'flex',alignItems:'center',gap:9}}>
+            <span style={{width:32,height:32,borderRadius:14,background:'linear-gradient(135deg,#dcfce7,#fef3c7)',display:'flex',alignItems:'center',justifyContent:'center',fontSize:17,boxShadow:'0 8px 20px rgba(22,101,52,.12)'}}>⚽</span>
+            <span style={{fontFamily:'\"Bebas Neue\", sans-serif',fontSize:22,fontWeight:400,color:T.accent,letterSpacing:2}}>BOLÃO 2026</span>
           </div>
           <div style={{display:'flex',alignItems:'center',gap:8}}>
             <span style={{fontSize:11,color:T.txt3,maxWidth:120,overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}}>{meName}</span>
-            <button style={{padding:'5px 12px',borderRadius:20,border:`1px solid ${T.border}`,background:T.card,color:T.txt2,fontSize:11,fontWeight:600,cursor:'pointer'}} onClick={copyLink}>🔗 Convidar</button>
-            <button style={{padding:'4px 10px',borderRadius:10,border:`1px solid ${T.border}`,background:T.card,color:T.txt3,fontSize:10,cursor:'pointer'}} onClick={logout}>Sair</button>
+            <button style={{padding:'6px 12px',borderRadius:20,border:`1px solid ${T.border}`,background:'rgba(255,255,255,.72)',color:T.txt2,fontSize:11,fontWeight:800,cursor:'pointer',boxShadow:'0 6px 16px rgba(15,23,42,.05)'}} onClick={copyLink}>🔗 Convidar</button>
+            <button style={{padding:'5px 10px',borderRadius:12,border:`1px solid ${T.border}`,background:'rgba(255,255,255,.62)',color:T.txt3,fontSize:10,cursor:'pointer'}} onClick={logout}>Sair</button>
           </div>
         </div>
       </div>
@@ -1684,7 +1798,7 @@ function Bolao(){
       </div>
 
       {/* Bottom nav */}
-      <div style={{position:'fixed',bottom:0,left:0,right:0,background:'rgba(255,255,255,.9)',backdropFilter:'blur(10px)',borderTop:`1px solid ${T.border}`,display:'flex',boxShadow:'0 -2px 12px rgba(0,0,0,.06)',zIndex:100}}>
+      <div className="bottom-nav-premium" style={{position:'fixed',bottom:0,left:0,right:0,background:'rgba(255,255,255,.9)',backdropFilter:'blur(10px)',borderTop:`1px solid ${T.border}`,display:'flex',boxShadow:'0 -2px 12px rgba(0,0,0,.06)',zIndex:100}}>
         {[
           {k:'home',icon:'🏠',l:'Início'},
           {k:'matches',icon:'⚽',l:'Seus palpites'},
@@ -1698,7 +1812,7 @@ function Bolao(){
                 showToast('Sem permissão de admin para este usuário.',false);
               }else setTab(k);
             }}>
-            <span style={{fontSize:tab===k?20:18}}>{icon}</span>
+            <span style={{width:34,height:28,borderRadius:14,background:tab===k?T.accentLt:'transparent',display:'flex',alignItems:'center',justifyContent:'center',fontSize:tab===k?20:18,boxShadow:tab===k?'0 6px 16px rgba(22,163,74,.16)':'none'}}>{icon}</span>
             <span style={{fontSize:10,fontWeight:tab===k?700:500}}>{l}</span>
           </button>
         ))}
